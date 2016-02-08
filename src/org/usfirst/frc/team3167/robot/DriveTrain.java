@@ -10,6 +10,9 @@ public class DriveTrain {
 	
 	private static final double stopSpeed = 0.0; 
 	
+	//Experiment with this. Check touchiness of turning. 
+	private static final double turnScaleFactor = 0.8; 
+	
 	private Talon leftMotorA = new Talon(1);
 	private Talon leftMotorB = new Talon(2);
 	
@@ -24,9 +27,9 @@ public class DriveTrain {
 	public void drive() 
 	{
 		driveA.arcadeDrive(-driveStick.getRawAxis(1),
-				-driveStick.getRawAxis(2));
+				-driveStick.getRawAxis(2) * turnScaleFactor);
 		driveB.arcadeDrive(-driveStick.getRawAxis(1), 
-				-driveStick.getRawAxis(2));
+				-driveStick.getRawAxis(2) * turnScaleFactor);
 		
 		if(driveStick.getRawButton(4)) 
 		{

@@ -44,9 +44,9 @@ public class Robot extends IterativeRobot {
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
-        driveStick = new Joystick(1); 
+        driveStick = new Joystick(1);
         
-        ballWheels = new BallWheels(1, 2); 
+        ballWheels = new BallWheels(); 
         driveTrain = new DriveTrain(); 
     }
 	
@@ -122,14 +122,7 @@ public class Robot extends IterativeRobot {
         /* 
          * Control shooting mechanism. 
          */
-        if(driveStick.getRawButton(3)) 
-        {
-        	ballWheels.pullIn(); 
-        }
-        else if(driveStick.getRawButton(4)) 
-        {
-        	ballWheels.shoot(); 
-        }
+        ballWheels.shooterGrabber();
       }
 
     

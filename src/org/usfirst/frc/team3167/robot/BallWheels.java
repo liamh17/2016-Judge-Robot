@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3167.robot;
 
 import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class BallWheels {
 	
@@ -8,13 +9,25 @@ public class BallWheels {
 	private static final double ballShootOutSpeed = 1.0; 
 	private static final double stopSpeed = 0.0; 
 	
-	private Jaguar leftWheelMotor;
-	private Jaguar rightWheelMotor;
+	private Joystick driveStick = new Joystick(1); 
 	
-	public BallWheels(int leftChannel, int rightChannel) 
+	private Jaguar leftWheelMotor = new Jaguar(5);
+	private Jaguar rightWheelMotor = new Jaguar(6);
+	
+	public void shooterGrabber() 
 	{
-		leftWheelMotor = new Jaguar(5);
-		rightWheelMotor = new Jaguar(6); 
+        if(driveStick.getRawButton(3)) 
+        {
+        	pullIn(); 
+        }
+        else if(driveStick.getRawButton(4)) 
+        {
+        	shoot(); 
+        }
+        else 
+        {
+        	stop(); 
+        }
 	}
 	public void pullIn() 
 	{
@@ -31,5 +44,4 @@ public class BallWheels {
 		leftWheelMotor.set(stopSpeed);
 		rightWheelMotor.set(stopSpeed);
 	}
-
 }
