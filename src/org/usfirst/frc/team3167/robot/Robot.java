@@ -171,7 +171,7 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     
-    public void pullBallIn() 
+    /*public void pullBallIn() 
     {
     	ballWheelLeft.set(-ballPullInSpeed);
     	ballWheelRight.set(ballPullInSpeed);
@@ -180,5 +180,5 @@ public class Robot extends IterativeRobot {
     {
     	ballWheelLeft.set(ballPullInSpeed);
     	ballWheelRight.set(-ballShootOutSpeed);
-    }
+    }*/
 }
