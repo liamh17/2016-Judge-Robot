@@ -112,17 +112,37 @@ public class Robot extends IterativeRobot {
     {
         Scheduler.getInstance().run();
         
-        //Double check axes
         /*
          * Control drive train. 
+         * Double check axes in DriveTrain
+         * class before uploading. 
          */
         driveTrain.drive();
-        
-        //Double check buttons
+		
+        /*driveA.arcadeDrive(-driveStick.getRawAxis(1),
+				-driveStick.getRawAxis(2) * turnScaleFactor);
+		driveB.arcadeDrive(-driveStick.getRawAxis(1), 
+				-driveStick.getRawAxis(2) * turnScaleFactor);*/
+		
         /* 
          * Control shooting mechanism. 
+         * Double check buttons in BallWheels
+         * class before uploading.
          */
         ballWheels.shooterGrabber();
+        
+        /*if(driveStick.getRawButton(3)) 
+        {
+        	ballWheels.pullIn(); 
+        }
+        else if(driveStick.getRawButton(4)) 
+        {
+        	ballWheels.shoot(); 
+        }
+        else 
+        {
+        	ballWheels.stop(); 
+        }*/
       }
 
     
