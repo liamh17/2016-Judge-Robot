@@ -25,22 +25,10 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	
+	private Joystick driveStick; 
+	
 	private BallWheels ballWheels; 
-	
-	private static final double ballPullInSpeed = 0.5; 
-	private static final double ballShootOutSpeed = 1.0; 
-	
-	private Joystick driveStick;
-	
-	private Talon leftMotorA, leftMotorB;
-	
-	private Talon rightMotorA, rightMotorB;
-	
-	private Jaguar ballWheelLeft, ballWheelRight; 
-		
-	//private CANJaguar ballWheelLeft, ballWheelRight; 
-	
-	private RobotDrive driveA, driveB;
+	private DriveTrain driveTrain;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -56,25 +44,10 @@ public class Robot extends IterativeRobot {
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
-        ballWheels = new BallWheels(1, 2); 
-        
-        //Variables used in software.
         driveStick = new Joystick(1); 
         
-        leftMotorA = new Talon(1); 
-        leftMotorB = new Talon(2); 
-        
-        rightMotorA = new Talon(3); 
-        rightMotorB = new Talon(4);
-        
-        ballWheelLeft = new Jaguar(5); 
-        ballWheelRight = new Jaguar(6); 
-        
-        //ballWheelLeft = new CANJaguar(5); 
-        //ballWheelLeft = new CANJaguar(6); 
-        
-        driveA = new RobotDrive(leftMotorA, rightMotorA); 
-        driveB = new RobotDrive(leftMotorB, rightMotorB); 
+        ballWheels = new BallWheels(1, 2); 
+        driveTrain = new DriveTrain(); 
     }
 	
 	/**
@@ -141,16 +114,13 @@ public class Robot extends IterativeRobot {
         
         //Double check axes
         /*
-         * Control driving of the robot. 
+         * Control drive train. 
          */
-        driveA.arcadeDrive(-driveStick.getRawAxis(1), 
-        		-driveStick.getRawAxis(2)); 
-        driveB.arcadeDrive(driveStick.getRawAxis(1), 
-        		-driveStick.getRawAxis(2));
+        driveTrain.drive();
         
         //Double check buttons
         /* 
-         * These if/else if statements control the ball shooter.
+         * Control shooting mechanism. 
          */
         if(driveStick.getRawButton(3)) 
         {
