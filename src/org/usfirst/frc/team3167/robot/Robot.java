@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 	private BallWheels ballWheels; 
 	private DriveTrain driveTrain;
 	private Vision camera; 
+	private Autonomous autonomous;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
         ballWheels = new BallWheels(); 
         driveTrain = new DriveTrain(); 
         camera = new Vision(); 
+        autonomous = new Autonomous(0, 1, 2, 3);  
     }
 	
 	/**
@@ -97,6 +99,8 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
+        autonomous.run();
     }
 
     public void teleopInit() {
@@ -119,7 +123,6 @@ public class Robot extends IterativeRobot {
         ballWheels.shooterGrabber();
         
         camera.enable(); 
-        
       }
 
     

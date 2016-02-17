@@ -13,18 +13,17 @@ public class Autonomous {
 	
 	Timer timer = new Timer(); 
 	
-	public void auton(int leftChannelA, int leftChannelB,
+	public Autonomous(int leftChannelA, int leftChannelB,
 			int rightChannelA, int rightChannelB) {
 
 		leftMotorA = new Talon(leftChannelA);
 		leftMotorB = new Talon(leftChannelB); 
 		
 		rightMotorA = new Talon(rightChannelA); 
-		rightMotorB = new Talon(rightChannelB); 
-		
+		rightMotorB = new Talon(rightChannelB); 	
 	}
-	public void run(){
-		
+	public void run()
+	{
 		timer.start();
 		
 		leftMotorA.set(1.0); 
@@ -43,5 +42,4 @@ public class Autonomous {
 		
 		timer.stop();
 	}
-
 }
