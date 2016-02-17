@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	
 	private BallWheels ballWheels; 
 	private DriveTrain driveTrain;
+	private Vision camera; 
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
         
         ballWheels = new BallWheels(); 
         driveTrain = new DriveTrain(); 
+        camera = new Vision(); 
     }
 	
 	/**
@@ -111,38 +113,13 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() 
     {
         Scheduler.getInstance().run();
-        
-        /*
-         * Control drive train. 
-         * Double check axes in DriveTrain
-         * class before uploading. 
-         */
+
         driveTrain.drive();
 		
-        /*driveA.arcadeDrive(-driveStick.getRawAxis(1),
-				-driveStick.getRawAxis(2) * turnScaleFactor);
-		driveB.arcadeDrive(-driveStick.getRawAxis(1), 
-				-driveStick.getRawAxis(2) * turnScaleFactor);*/
-		
-        /* 
-         * Control shooting mechanism. 
-         * Double check buttons in BallWheels
-         * class before uploading.
-         */
         ballWheels.shooterGrabber();
         
-        /*if(driveStick.getRawButton(3)) 
-        {
-        	ballWheels.pullIn(); 
-        }
-        else if(driveStick.getRawButton(4)) 
-        {
-        	ballWheels.shoot(); 
-        }
-        else 
-        {
-        	ballWheels.stop(); 
-        }*/
+        camera.enable(); 
+        
       }
 
     
